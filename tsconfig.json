@@ -1,0 +1,8 @@
+{
+  "extends": "@allwagelab/typescript-config/react-library.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "preserve",
+    "moduleResolution": "Bundler"
+  }
+}

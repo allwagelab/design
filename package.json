@@ -1,0 +1,24 @@
+{
+  "name": "@allwagelab/design",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./themes.css": "./dist/themes.css"
+  },
+  "scripts": {
+    "build": "npm build:js && npm build:type && npm build:css",
+    "build:js": "node build.js",
+    "build:type": "npm tsc --emitDeclarationOnly",
+    "build:css": "node ./scripts/build-css-module.js"
+  },
+  "dependencies": {
+    "@allwagelab/esbuild-config": "^0.0.1",
+    "@allwagelab/typescript-config": "^0.0.1"
+  }
+}
