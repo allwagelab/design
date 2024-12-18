@@ -1,6 +1,7 @@
 {
   "name": "@allwagelab/design",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "Allwage Design System Components",
   "type": "module",
   "main": "dist/index.js",
   "exports": {
@@ -11,14 +12,41 @@
     },
     "./themes.css": "./dist/themes.css"
   },
-  "scripts": {
-    "build": "npm build:js && npm build:type && npm build:css",
-    "build:js": "node build.js",
-    "build:type": "npm tsc --emitDeclarationOnly",
-    "build:css": "node ./scripts/build-css-module.js"
-  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@allwagelab/esbuild-config": "^0.0.1",
+    "@allwagelab/esbuild-config": "^0.0.2",
     "@allwagelab/typescript-config": "^0.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "allwage"
+  ],
+  "author": "Allwage Lab",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allwagelab/design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allwagelab/design/issues"
+  },
+  "homepage": "https://github.com/allwagelab/design#readme",
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:js && npm run build:type && npm run build:css",
+    "build:js": "node build.js",
+    "build:type": "tsc --emitDeclarationOnly",
+    "build:css": "node ./scripts/build-css-module.js"
   }
 }
