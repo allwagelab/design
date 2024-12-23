@@ -1,7 +1,7 @@
 {
   "name": "@allwagelab/design",
-  "version": "0.0.2",
-  "description": "Allwage Design System Components",
+  "version": "0.0.3",
+  "description": "Allwage Designs",
   "type": "module",
   "main": "dist/index.js",
   "exports": {
@@ -21,9 +21,6 @@
   },
   "devDependencies": {
     "typescript": "^5.4.5"
-  },
-  "peerDependencies": {
-    "react": "^18 || ^19"
   },
   "keywords": [
     "design-system",

@@ -1,11 +1,18 @@
 import * as theme from "../dist/index.js";
 import fs from "fs";
 
-const toCssCasting = (str) =>
-  str
+const toCssCasting = (str) => {
+  // First handle the special case for class names like t5_rg
+  if (str.match(/^[a-z]\d+_[a-z]{2}$/)) {
+    return str; // Keep the original format for these patterns
+  }
+
+  // For other cases, maintain the original hyphenation logic
+  return str
     .replace(/([a-z])(\d)/, "$1-$2")
     .replace(/([A-Z])/g, "-$1")
     .toLowerCase();
+};
 
 const generateThemeCss = () => {
   const cssClasses = [];
@@ -40,9 +47,8 @@ const generateThemeCss = () => {
       .map(([mainKey, mainValue]) =>
         Object.entries(mainValue)
           .map(([subKey, subValue]) => {
-            const className = `.${toCssCasting(mainKey)}-${toCssCasting(
-              subKey
-            )}`;
+            // Create class name without extra hyphens for the specific pattern
+            const className = `.${toCssCasting(mainKey)}-${subKey}`;
 
             const styleProperties = Object.entries(subValue)
               .map(

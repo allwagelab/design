@@ -1,29 +1,43 @@
-export declare const head: {
-    xl: {
+export declare const headline: {
+    h1_sb: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    lg: {
+    h2_sb: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    md: {
+};
+export declare const title: {
+    t1_sb: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    sm: {
+    t2_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    xs: {
+    t3_rg: {
+        fontSize: string;
+        fontWeight: string;
+        lineHeight: string;
+        letterSpacing: string;
+    };
+    t4_rg: {
+        fontSize: string;
+        fontWeight: string;
+        lineHeight: string;
+        letterSpacing: string;
+    };
+    t5_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
@@ -31,28 +45,49 @@ export declare const head: {
     };
 };
 export declare const body: {
-    lg: {
+    b1_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    md: {
+    b2_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    sm: {
+    b3_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
         letterSpacing: string;
     };
-    xs: {
+    b4_rg: {
         fontSize: string;
         fontWeight: string;
         lineHeight: string;
+        letterSpacing: string;
+    };
+};
+export declare const caption: {
+    c1_rg: {
+        fontSize: string;
+        fontWeight: string;
+        lineHeight: string;
+        letterSpacing: string;
+    };
+    c2_rg: {
+        fontSize: string;
+        fontWeight: string;
+        lineHeight: string;
+        letterSpacing: string;
+    };
+    c3_rg: {
+        fontSize: string;
+        fontWeight: string;
+        lineHeight: string;
+        letterSpacing: string;
     };
 };
 //# sourceMappingURL=typography.d.ts.map

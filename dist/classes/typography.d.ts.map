@@ -1,1 +1,1 @@
-{"version":3,"file":"typography.d.ts","sourceRoot":"","sources":["../../src/classes/typography.ts"],"names":[],"mappings":"AAEA,eAAO,MAAM,IAAI;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CA+BhB,CAAA;AAED,eAAO,MAAM,IAAI;;;;;;;;;;;;;;;;;;;;;;;;CAwBhB,CAAA"}
+{"version":3,"file":"typography.d.ts","sourceRoot":"","sources":["../../src/classes/typography.ts"],"names":[],"mappings":"AAEA,eAAO,MAAM,QAAQ;;;;;;;;;;;;;CAapB,CAAC;AAEF,eAAO,MAAM,KAAK;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CA+BjB,CAAC;AAEF,eAAO,MAAM,IAAI;;;;;;;;;;;;;;;;;;;;;;;;;CAyBhB,CAAC;AAEF,eAAO,MAAM,OAAO;;;;;;;;;;;;;;;;;;;CAmBnB,CAAC"}
