@@ -1,8 +1,19 @@
 {
-  "extends": "@allwagelab/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "preserve",
-    "moduleResolution": "Bundler"
-  }
+    "lib": ["DOM", "DOM.Iterable", "ES2015"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2015",
+
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+  },
+  "include": ["global.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/lib"]
 }

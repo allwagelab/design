@@ -1,0 +1,56 @@
+{
+  "name": "@allwagelab/design",
+  "version": "0.0.8",
+  "description": "Allwage Designs",
+  "license": "MIT",
+  "author": {
+    "name": "createhb21",
+    "url": "https://github.com/createhb21"
+  },
+  "homepage": "https://github.com/allwagelab/design#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allwagelab/design.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allwagelab/design/issues"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "lint:es": "eslint src",
+    "lint:es:fix": "eslint src --fix",
+    "lint:style": "stylelint 'src/**/*.{js,ts,tsx}'",
+    "lint:style:fix": "stylelint 'src/**/*.{js,ts,tsx}' --fix",
+    "lint:etc": "prettier src --check",
+    "lint:etc:fix": "prettier src --write"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --check"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ]
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0",
+    "@emotion/react": "^11.0",
+    "@emotion/styled": "^11.0"
+  }
+}
