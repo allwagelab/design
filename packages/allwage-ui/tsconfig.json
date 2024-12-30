@@ -1,5 +1,6 @@
 {
   "extends": "@allwagelab/typescript-config/base.json",
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "lib"],
   "compilerOptions": {
     "jsxImportSource": "@emotion/react"

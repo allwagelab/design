@@ -108,3 +108,6 @@ docs/storybook-static/
 # vscode
 .vscode/*
 !.vscode/settings.json
+
+# playground
+playground

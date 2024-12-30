@@ -1,4 +1,4 @@
-import { css, type SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
 
 import { typographyInlineStyle } from './typographyInlineStyle'
 
@@ -44,7 +44,9 @@ type TypographyVariant =
  * `
  * ```
  */
-export const typographyStyle = <T extends TypographyVariant>(variant: T): SerializedStyles => {
+export const typographyStyle = <T extends TypographyVariant>(
+  variant: T,
+): ReturnType<typeof css> => {
   const [category, style] = variant.split('.') as [Category, StyleKeyForCategory<Category>]
 
   const categoryStyles = typographyInlineStyle[category] as Record<
