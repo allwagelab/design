@@ -64,7 +64,7 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
 
   ${BUTTON_SIZES[size]}
 
-  &:disabled {
+  &:disabled:not([aria-busy='true']) {
     cursor: not-allowed;
   }
 
@@ -103,8 +103,8 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
       color: ${theme.colors.baseWhite};
     }
 
-    &:disabled {
-      border-color: ${theme.colors.gray20};
+    &:disabled:not([aria-busy='true']) {
+      background-color: ${theme.colors.gray20};
       color: ${theme.colors.gray70};
     }
   `}
@@ -127,9 +127,10 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
       background-color: ${theme.colors.blue10};
     }
 
-    &:disabled {
+    &:disabled:not([aria-busy='true']) {
+      background-color: ${theme.colors.gray10};
       border-color: ${theme.colors.gray30};
-      color: ${theme.colors.baseWhite};
+      color: ${theme.colors.gray70};
     }
 
     &[aria-current='false'] {
@@ -139,7 +140,7 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
     }
 
     &[aria-busy='true'] {
-      border-color: ${theme.colors.blue70};
+      border-color: ${theme.colors.blue60};
     }
   `}
 
@@ -160,7 +161,7 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
       color: ${theme.colors.gray80};
     }
 
-    &:disabled {
+    &:disabled:not([aria-busy='true']) {
       color: ${theme.colors.gray70};
     }
   `}

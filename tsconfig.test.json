@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@allwagelab/design": ["./packages/allwage-theme/src"],
+      "@allwagelab/react": ["./packages/allwage-ui/src"]
+    }
+  },
+  "include": ["global.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/lib"]
+}

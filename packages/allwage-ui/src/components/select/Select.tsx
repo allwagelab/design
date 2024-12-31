@@ -115,6 +115,7 @@ const DropdownList = styled.ul<{ isOpen: boolean }>`
   background-color: ${theme.colors.baseWhite};
   border: 1px solid ${theme.colors.gray90};
   border-radius: 0px 0px 8px 8px;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   z-index: 10;
