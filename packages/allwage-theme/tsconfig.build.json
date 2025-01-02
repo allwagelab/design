@@ -1,5 +1,5 @@
 {
-  "extends": "@allwagelab/typescript-config/react-library.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib",
     "jsxImportSource": "@emotion/react"

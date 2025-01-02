@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import fs from 'fs'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 const stories = fs
   .readdirSync('packages')
@@ -41,12 +40,6 @@ const config: StorybookConfig = {
     options: {
       strictMode: true,
     },
-  },
-  viteFinal: async config => {
-    return {
-      ...config,
-      plugins: [...(config.plugins || []), tsconfigPaths()],
-    }
   },
   docs: {},
   staticDirs: ['./public'],

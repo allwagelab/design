@@ -70,9 +70,9 @@ const TypeSection = ({ title, styles }: { title: string; styles: Record<string, 
           {`font-weight: ${style.fontWeight}`}
         </TypeInfo>
         <TypeExample typographyStyle={style}>
-          대한민국은 민주공화국이다.
+          {title === 'Headline' && '직원관리'}
           {title !== 'Headline' &&
-            '대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다.'}
+            '근로 조건을 변경하기 위해서는 근로계약서를 새로 작성해야 합니다.'}
         </TypeExample>
       </TypeRow>
     ))}
