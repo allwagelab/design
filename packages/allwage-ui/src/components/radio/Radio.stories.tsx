@@ -34,7 +34,7 @@ type Story = StoryObj<typeof Radio>
 // 기본 라디오
 export const Default: Story = {
   args: {
-    label: '텍스트 내용 텍스트 내용',
+    label: '텍스트 내용',
   },
 }
 
