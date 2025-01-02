@@ -1,6 +1,9 @@
 name: 'Chromatic'
 
-on: push
+on:
+  push:
+    branches:
+      - chromatic
 
 jobs:
   chromatic-deployment:
@@ -16,6 +19,11 @@ jobs:
         with:
           node-version: '20.14'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.15.0
+
       - name: Install dependencies
         run: pnpm install
 
@@ -23,5 +31,4 @@ jobs:
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # 옵션: 빌드 스크립트 지정
           buildScriptName: build-storybook
