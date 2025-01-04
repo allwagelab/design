@@ -1,6 +1,6 @@
 {
   "name": "@allwagelab/react",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Allwage React Components",
   "license": "MIT",
   "author": {
@@ -16,16 +16,15 @@
     "url": "https://github.com/allwagelab/design/issues"
   },
   "sideEffects": false,
-  "main": "src/index.ts",
-  "module": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
   "publishConfig": {
-    "main": "lib/index.js",
-    "module": "lib/index.mjs",
-    "types": "lib/index.d.ts"
+    "access": "public"
   },
   "files": [
-    "lib"
+    "lib",
+    "README.md"
   ],
   "scripts": {
     "build": "vite build",
