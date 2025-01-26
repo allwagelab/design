@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, forwardRef } from 'react'
 
 import { theme } from '@allwagelab/design'
 import isPropValid from '@emotion/is-prop-valid'
@@ -128,61 +128,70 @@ const SearchIconWrapper = styled.div<{
   pointer-events: none;
 `
 
-export default function Input({
-  full,
-  sizeVariant = 'md',
-  disabled = false,
-  error = false,
-  hasIcon = false,
-  value,
-  defaultValue,
-  onChange,
-  ...props
-}: InputBaseProps) {
-  const [isDirty, setIsDirty] = useState(() => {
-    return Boolean(value || defaultValue)
-  })
-  const [isFocused, setIsFocused] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+const Input = forwardRef<HTMLInputElement, InputBaseProps>(
+  (
+    {
+      full,
+      sizeVariant = 'md',
+      disabled = false,
+      error = false,
+      hasIcon = false,
+      value,
+      defaultValue,
+      onChange,
+      ...props
+    }: InputBaseProps,
+    ref,
+  ) => {
+    const [isDirty, setIsDirty] = useState(() => {
+      return Boolean(value || defaultValue)
+    })
+    const [isFocused, setIsFocused] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIsDirty(Boolean(e.target.value))
-      onChange?.(e)
-    },
-    [onChange],
-  )
+    const handleChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsDirty(Boolean(e.target.value))
+        onChange?.(e)
+      },
+      [onChange],
+    )
 
-  return (
-    <InputWrapper
-      full={full}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {hasIcon && (
-        <SearchIconWrapper
-          disabled={disabled}
-          sizeVariant={sizeVariant}
-          isDirty={isDirty}
-          isFocused={isFocused}
-          isHovered={isHovered}
-        >
-          <SearchIcon size={sizeVariant === 'sm' ? 16 : 20} />
-        </SearchIconWrapper>
-      )}
-      <InputBase
+    return (
+      <InputWrapper
         full={full}
-        sizeVariant={sizeVariant}
-        disabled={disabled}
-        error={error}
-        hasIcon={hasIcon}
-        value={value}
-        defaultValue={defaultValue}
-        onChange={handleChange}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        {...props}
-      />
-    </InputWrapper>
-  )
-}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {hasIcon && (
+          <SearchIconWrapper
+            disabled={disabled}
+            sizeVariant={sizeVariant}
+            isDirty={isDirty}
+            isFocused={isFocused}
+            isHovered={isHovered}
+          >
+            <SearchIcon size={sizeVariant === 'sm' ? 16 : 20} />
+          </SearchIconWrapper>
+        )}
+        <InputBase
+          ref={ref}
+          full={full}
+          sizeVariant={sizeVariant}
+          disabled={disabled}
+          error={error}
+          hasIcon={hasIcon}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={handleChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          {...props}
+        />
+      </InputWrapper>
+    )
+  },
+)
+Input.displayName = 'Input'
+
+export default Input
