@@ -1,4 +1,3 @@
-// Avatar.stories.tsx
 import { theme } from '@allwagelab/design'
 import type { Meta, StoryObj } from '@storybook/react'
 
