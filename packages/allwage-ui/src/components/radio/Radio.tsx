@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react'
+import { ChangeEvent, forwardRef } from 'react'
 
 import { theme } from '@allwagelab/design'
 import isPropValid from '@emotion/is-prop-valid'
@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 
 interface RadioProps {
   checked?: boolean
+  defaultChecked?: boolean
   disabled?: boolean
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   name?: string
@@ -92,28 +93,27 @@ const RadioLabel = styled.span<{ disabled?: boolean }>`
   ${theme.typography.body.b3_rg};
 `
 
-export default function Radio({
-  checked = false,
-  disabled = false,
-  onChange,
-  name,
-  value,
-  label,
-  ...props
-}: RadioProps) {
-  return (
-    <RadioWrapper disabled={disabled}>
-      <RadioInput
-        type="radio"
-        checked={checked}
-        disabled={disabled}
-        onChange={onChange}
-        name={name}
-        value={value}
-        {...props}
-      />
-      <RadioControl checked={checked} disabled={disabled} />
-      {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
-    </RadioWrapper>
-  )
-}
+const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ checked = false, disabled = false, onChange, name, value, label, ...props }, ref) => {
+    return (
+      <RadioWrapper disabled={disabled}>
+        <RadioInput
+          ref={ref}
+          type="radio"
+          checked={checked}
+          disabled={disabled}
+          onChange={onChange}
+          name={name}
+          value={value}
+          {...props}
+        />
+        <RadioControl checked={checked} disabled={disabled} />
+        {label && <RadioLabel disabled={disabled}>{label}</RadioLabel>}
+      </RadioWrapper>
+    )
+  },
+)
+
+Radio.displayName = 'Radio'
+
+export default Radio
