@@ -49,11 +49,11 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@emotion/is-prop-valid": "^1.3.1",
-    "@allwagelab/design": "^0.0.8",
+    "@allwagelab/design": "^1.0.0",
     "@allwagelab/typescript-config": "^0.0.3"
   },
   "peerDependencies": {
-    "@allwagelab/design": "^0.0.8",
+    "@allwagelab/design": "^1.0.0",
     "react": "^18.0",
     "@emotion/react": "^11.0",
     "@emotion/styled": "^11.0"
