@@ -1,10 +1,6 @@
 {
   "name": "@allwagelab/react",
-<<<<<<< HEAD
   "version": "0.0.5",
-=======
-  "version": "0.0.4",
->>>>>>> main
   "description": "Allwage React Components",
   "license": "MIT",
   "author": {
