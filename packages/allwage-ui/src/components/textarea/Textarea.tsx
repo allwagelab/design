@@ -34,6 +34,7 @@ interface TextAreaProps extends BaseTextAreaCssProps {
   defaultValue?: string
   maxLength?: number
   placeholder?: string
+  className?: string
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -90,6 +91,7 @@ export default function TextArea({
   onChange,
   maxLength = 200,
   placeholder,
+  className,
   ...props
 }: TextAreaProps) {
   const [currentLength, setCurrentLength] = useState(() => {
@@ -111,7 +113,7 @@ export default function TextArea({
   )
 
   return (
-    <TextAreaWrapper full={full} error={error}>
+    <TextAreaWrapper full={full} error={error} className={className}>
       <TextAreaBase
         full={full}
         sizeVariant={sizeVariant}

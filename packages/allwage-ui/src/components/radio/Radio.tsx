@@ -12,6 +12,7 @@ interface RadioProps {
   name?: string
   value?: string
   label?: string
+  className?: string
 }
 
 const RadioWrapper = styled.label<{ disabled?: boolean }>`
@@ -46,6 +47,7 @@ const RadioControl = styled.div<{ checked?: boolean; disabled?: boolean }>`
   background-color: ${props => (props.disabled ? theme.colors.gray30 : theme.colors.baseWhite)};
   position: relative;
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &::after {
     content: '';
@@ -91,12 +93,16 @@ const RadioControl = styled.div<{ checked?: boolean; disabled?: boolean }>`
 const RadioLabel = styled.span<{ disabled?: boolean }>`
   color: ${props => (props.disabled ? theme.colors.gray60 : theme.colors.gray90)};
   ${theme.typography.body.b3_rg};
+  cursor: pointer;
 `
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
-  ({ checked = false, disabled = false, onChange, name, value, label, ...props }, ref) => {
+  (
+    { checked = false, disabled = false, onChange, name, value, label, className, ...props },
+    ref,
+  ) => {
     return (
-      <RadioWrapper disabled={disabled}>
+      <RadioWrapper disabled={disabled} className={className}>
         <RadioInput
           ref={ref}
           type="radio"

@@ -10,6 +10,7 @@ interface ToggleProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   name?: string
   value?: string
+  className?: string
 }
 
 const ToggleWrapper = styled.label<{ disabled?: boolean }>`
@@ -41,6 +42,7 @@ const ToggleTrack = styled.div<{ checked?: boolean; disabled?: boolean }>`
   border-radius: 12px;
   transition: all 0.2s ease;
   position: relative;
+  cursor: pointer;
 
   ${ToggleInput}:focus-visible + & {
     box-shadow: 0 0 0 2px ${theme.colors.blue20};
@@ -71,10 +73,11 @@ export default function Toggle({
   onChange,
   name,
   value,
+  className,
   ...props
 }: ToggleProps) {
   return (
-    <ToggleWrapper disabled={disabled}>
+    <ToggleWrapper disabled={disabled} className={className}>
       <ToggleInput
         type="checkbox"
         checked={checked}

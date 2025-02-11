@@ -55,6 +55,7 @@ const baseButtonCss = ({ full, size = 'md', variant = 'filled' }: ButtonBaseProp
   border: none;
   outline: none;
   position: relative;
+  cursor: pointer;
 
   ${full &&
   css`

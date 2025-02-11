@@ -16,6 +16,7 @@ interface AvatarProps {
   size?: AvatarSize
   src?: string
   alt?: string
+  className?: string
 }
 
 const AvatarContainer = styled.div<{ size: AvatarSize }>`
@@ -44,9 +45,9 @@ const IconWrapper = styled.div<{ size: AvatarSize }>`
   justify-content: center;
 `
 
-export default function Avatar({ size = 'md', src, alt }: AvatarProps) {
+export default function Avatar({ size = 'md', src, alt, className }: AvatarProps) {
   return (
-    <AvatarContainer size={size}>
+    <AvatarContainer size={size} className={className}>
       {src ? (
         <AvatarImage src={src} alt={alt || 'avatar'} />
       ) : (
