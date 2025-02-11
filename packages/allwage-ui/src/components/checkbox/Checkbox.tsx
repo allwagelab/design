@@ -14,6 +14,7 @@ interface CheckboxProps {
   label?: string
   name?: string
   value?: string
+  className?: string
 }
 
 const CheckboxContainer = styled.label<{ disabled?: boolean }>`
@@ -44,6 +45,7 @@ const CheckboxControl = styled.div<{ checked?: boolean; disabled?: boolean }>`
   justify-content: center;
   transition: all 0.2s ease;
   background-color: ${theme.colors.baseWhite};
+  cursor: pointer;
 
   ${({ checked, disabled }) => {
     if (checked && !disabled) {
@@ -81,6 +83,7 @@ const CheckboxControl = styled.div<{ checked?: boolean; disabled?: boolean }>`
 const CheckboxLabel = styled.span<{ disabled?: boolean }>`
   color: ${props => (props.disabled ? theme.colors.gray60 : theme.colors.gray90)};
   ${theme.typography.body.b2_rg};
+  cursor: pointer;
 `
 
 export default function Checkbox({
@@ -90,10 +93,11 @@ export default function Checkbox({
   label,
   name,
   value,
+  className,
   ...props
 }: CheckboxProps) {
   return (
-    <CheckboxContainer disabled={disabled}>
+    <CheckboxContainer disabled={disabled} className={className}>
       <CheckboxInput
         type="checkbox"
         checked={checked}

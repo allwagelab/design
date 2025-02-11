@@ -45,6 +45,7 @@ interface SelectProps extends BaseSelectCssProps {
   options: SelectOption[]
   value?: string
   placeholder?: string
+  className?: string
   onChange?: (value: string) => void
 }
 
@@ -63,8 +64,8 @@ const baseSelectCss = ({ full, size = 'md', isOpen }: BaseSelectCssProps) => css
   background-color: ${theme.colors.baseWhite};
   border: 1px solid ${theme.colors.gray30};
   color: ${theme.colors.gray100};
-  cursor: pointer;
   outline: none;
+  cursor: pointer;
 
   ${SELECT_SIZES[size]}
 
@@ -126,8 +127,8 @@ const DropdownItem = styled.li<{ isSelected: boolean; size?: SelectSize }>`
   display: flex;
   align-items: center;
   padding: 0 1rem;
-  cursor: pointer;
   color: ${theme.colors.gray100};
+  cursor: pointer;
 
   ${({ size = 'md' }) => SELECT_SIZES[size]}
   font-weight: ${({ isSelected }) => (isSelected ? 600 : 400)};
@@ -149,6 +150,7 @@ export default function Select({
   disabled = false,
   size = 'md',
   full = false,
+  className,
   onChange,
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -160,7 +162,7 @@ export default function Select({
   }
 
   return (
-    <SelectWrapper full={full}>
+    <SelectWrapper full={full} className={className}>
       <SelectButton
         type="button"
         disabled={disabled}

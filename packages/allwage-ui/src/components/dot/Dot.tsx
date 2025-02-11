@@ -7,6 +7,6 @@ const ColorDot = styled.div<{ color: string }>`
   background-color: ${props => props.color};
 `
 
-export default function Dot({ color }: { color: string }) {
-  return <ColorDot color={color} />
+export default function Dot({ color, className }: { color: string; className?: string }) {
+  return <ColorDot color={color} className={className} />
 }

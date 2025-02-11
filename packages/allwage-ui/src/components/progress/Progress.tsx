@@ -13,6 +13,7 @@ interface ProgressProps {
   label?: string
   valueLabel?: string
   disabled?: boolean
+  className?: string
 }
 
 const ProgressContainer = styled.div<{ width?: number }>`
@@ -69,7 +70,15 @@ const ProgressBar = styled.div<{
 
 const Progress = forwardRef<HTMLDivElement, ProgressProps>(
   (
-    { value, width, label, valueLabel, disabled = false, type = 'normal' }: ProgressProps,
+    {
+      value,
+      width,
+      label,
+      valueLabel,
+      disabled = false,
+      type = 'normal',
+      className,
+    }: ProgressProps,
     ref: React.Ref<HTMLDivElement> | undefined,
   ) => {
     const normalizedValue = Math.min(100, Math.max(0, value))
@@ -86,7 +95,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
         : theme.colors.blue20
 
     return (
-      <ProgressContainer width={width}>
+      <ProgressContainer width={width} className={className}>
         <LabelContainer>
           <Label>{label}</Label>
           {valueLabel && (
