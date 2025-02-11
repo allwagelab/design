@@ -12,6 +12,7 @@ interface RadioGroupProps {
   disabled?: boolean
   error?: boolean
   direction?: 'horizontal' | 'vertical'
+  className?: string
 }
 
 const RadioGroupWrapper = styled.div`
@@ -47,13 +48,14 @@ export default function RadioGroup({
   disabled = false,
   error = false,
   direction = 'vertical',
+  className,
 }: RadioGroupProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value)
   }
 
   return (
-    <RadioGroupWrapper>
+    <RadioGroupWrapper className={className}>
       {label && <RadioGroupLabel>{label}</RadioGroupLabel>}
       <RadioGroupContent direction={direction}>
         {Array.isArray(children)
