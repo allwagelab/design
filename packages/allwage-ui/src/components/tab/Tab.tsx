@@ -11,10 +11,7 @@ interface TabProps {
   activeId: string
   onChange: (id: string) => void
   disabled?: boolean
-<<<<<<< HEAD
   className?: string
-=======
->>>>>>> main
 }
 
 const TabContainer = styled.div`
@@ -63,15 +60,9 @@ const TabButton = styled.button<{ isActive: boolean; disabled?: boolean }>`
   `}
 `
 
-<<<<<<< HEAD
 export default function Tab({ items, activeId, onChange, disabled = false, className }: TabProps) {
   return (
     <TabContainer className={className}>
-=======
-export default function Tab({ items, activeId, onChange, disabled = false }: TabProps) {
-  return (
-    <TabContainer>
->>>>>>> main
       <TabList>
         {items.map(item => (
           <TabButton
