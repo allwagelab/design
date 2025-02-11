@@ -97,12 +97,18 @@ const RadioLabel = styled.span<{ disabled?: boolean }>`
 `
 
 const Radio = forwardRef<HTMLInputElement, RadioProps>(
+<<<<<<< HEAD
   (
     { checked = false, disabled = false, onChange, name, value, label, className, ...props },
     ref,
   ) => {
     return (
       <RadioWrapper disabled={disabled} className={className}>
+=======
+  ({ checked = false, disabled = false, onChange, name, value, label, ...props }, ref) => {
+    return (
+      <RadioWrapper disabled={disabled}>
+>>>>>>> main
         <RadioInput
           ref={ref}
           type="radio"
