@@ -22,7 +22,7 @@ const meta: Meta<typeof Pagination> = {
     },
     max: {
       control: { type: 'number', min: 1 },
-      description: '한 번에 보여줄 페이지 수',
+      description: '한 페이지 그룹에 표시되는 페이지 수',
       defaultValue: 10,
     },
     disabled: {
@@ -38,6 +38,12 @@ const meta: Meta<typeof Pagination> = {
       options: ['filled', 'outline'],
       description: '스타일 변형',
       defaultValue: 'filled',
+    },
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: '페이지네이션 크기',
+      defaultValue: 'md',
     },
     showArrowDoubleIcon: {
       control: 'boolean',
@@ -140,11 +146,11 @@ export const Max: Story = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <div>
-          <h3>한 번에 보여줄 페이지 수: 7</h3>
+          <h3>페이지 그룹 수</h3>
           <Pagination current={page} total={100} onChange={setPage} max={7} />
         </div>
         <div>
-          <h3>한 번에 보여줄 페이지 수: 15</h3>
+          <h3>페이지 그룹 수</h3>
           <Pagination current={page2} total={100} onChange={setPage2} max={15} />
         </div>
       </div>
@@ -166,6 +172,32 @@ export const Disabled: Story = {
       </div>
     </div>
   ),
+}
+
+// 사이즈 예시
+export const Sizes: Story = {
+  render: () => {
+    const [page1, setPage1] = useState(1)
+    const [page2, setPage2] = useState(1)
+    const [page3, setPage3] = useState(1)
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div>
+          <h3>sm</h3>
+          <Pagination current={page1} total={10} onChange={setPage1} size="sm" />
+        </div>
+        <div>
+          <h3>md (기본)</h3>
+          <Pagination current={page2} total={10} onChange={setPage2} size="md" />
+        </div>
+        <div>
+          <h3>lg</h3>
+          <Pagination current={page3} total={10} onChange={setPage3} size="lg" />
+        </div>
+      </div>
+    )
+  },
 }
 
 // Double Arrow 버튼 표시 여부

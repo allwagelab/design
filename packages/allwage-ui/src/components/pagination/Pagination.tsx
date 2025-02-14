@@ -5,17 +5,28 @@ import { ArrowDoubleIcon } from '../../icons/arrow-double-icon'
 import { ArrowIcon } from '../../icons/arrow-icon'
 
 type PaginationVariant = 'outline' | 'filled'
+type PaginationSize = 'sm' | 'md' | 'lg'
+
+const BUTTON_SIZES: Record<
+  PaginationSize,
+  { width: number; height: number; fontSize: number; iconSize: number }
+> = {
+  sm: { width: 24, height: 24, fontSize: 12, iconSize: 12 },
+  md: { width: 32, height: 32, fontSize: 14, iconSize: 16 },
+  lg: { width: 40, height: 40, fontSize: 16, iconSize: 20 },
+}
 
 interface PaginationProps {
   current: number
   total: number
   onChange: (page: number) => void
-  disabled?: boolean
   max?: number
-  className?: string
+  disabled?: boolean
   color?: string
   variant?: PaginationVariant
+  size?: PaginationSize
   showArrowDoubleIcon?: boolean
+  className?: string
 }
 
 const Container = styled.div<{ disabled?: boolean }>`
@@ -29,16 +40,16 @@ const Container = styled.div<{ disabled?: boolean }>`
   pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
 `
 
-const ArrowButton = styled.button<{ isActive?: boolean; color?: string }>`
+const ArrowButton = styled.button<{ isActive?: boolean; color?: string; size?: PaginationSize }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
+  min-width: ${props => BUTTON_SIZES[props.size || 'md'].width}px;
+  height: ${props => BUTTON_SIZES[props.size || 'md'].height}px;
   border-radius: 2px;
   border: none;
   background: none;
-  ${theme.typography.body.b2_rg};
+  ${props => (props.size === 'sm' ? theme.typography.body.b3_rg : theme.typography.body.b2_rg)};
   color: ${props => (props.isActive ? props.color || theme.colors.gray90 : theme.colors.gray60)};
   cursor: pointer;
 
@@ -88,14 +99,15 @@ const NumberButton = styled.button<{
   isCurrentPage: boolean
   color?: string
   variant?: PaginationVariant
+  size?: PaginationSize
 }>`
-  ${theme.typography.body.b2_rg};
+  ${props => (props.size === 'sm' ? theme.typography.body.b3_rg : theme.typography.body.b2_rg)};
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
+  width: ${props => BUTTON_SIZES[props.size || 'md'].width}px;
+  height: ${props => BUTTON_SIZES[props.size || 'md'].height}px;
   border-radius: 2px;
   border: ${props =>
     props.isCurrentPage && props.variant === 'outline' && props.color
@@ -146,12 +158,14 @@ export default function Pagination({
   current,
   total,
   onChange,
-  disabled = false,
   max = 10,
-  className,
+
+  disabled = false,
   color,
   variant = 'filled',
+  size = 'md',
   showArrowDoubleIcon = true,
+  className,
 }: PaginationProps) {
   const pageList = createPageList(current, max, total)
   const showDoubleArrows = showArrowDoubleIcon && total > max
@@ -172,13 +186,13 @@ export default function Pagination({
   return (
     <Container className={className} disabled={disabled}>
       {showDoubleArrows && (
-        <ArrowButton onClick={() => onChange(1)} disabled={isFirstPage} color={color}>
-          <ArrowDoubleLeftIcon />
+        <ArrowButton onClick={() => onChange(1)} disabled={isFirstPage} color={color} size={size}>
+          <ArrowDoubleLeftIcon size={BUTTON_SIZES[size].iconSize} />
         </ArrowButton>
       )}
 
-      <ArrowButton onClick={handlePrevPage} disabled={isFirstPage} color={color}>
-        <ArrowLeftIcon />
+      <ArrowButton onClick={handlePrevPage} disabled={isFirstPage} color={color} size={size}>
+        <ArrowLeftIcon size={BUTTON_SIZES[size].iconSize} />
       </ArrowButton>
 
       <NumberWrapper>
@@ -190,19 +204,25 @@ export default function Pagination({
             onClick={() => onChange(page)}
             color={color}
             variant={variant}
+            size={size}
           >
             {page}
           </NumberButton>
         ))}
       </NumberWrapper>
 
-      <ArrowButton onClick={handleNextPage} disabled={isLastPage} color={color}>
-        <ArrowRightIcon />
+      <ArrowButton onClick={handleNextPage} disabled={isLastPage} color={color} size={size}>
+        <ArrowRightIcon size={BUTTON_SIZES[size].iconSize} />
       </ArrowButton>
 
       {showDoubleArrows && (
-        <ArrowButton onClick={() => onChange(total)} disabled={isLastPage} color={color}>
-          <ArrowDoubleRightIcon />
+        <ArrowButton
+          onClick={() => onChange(total)}
+          disabled={isLastPage}
+          color={color}
+          size={size}
+        >
+          <ArrowDoubleRightIcon size={BUTTON_SIZES[size].iconSize} />
         </ArrowButton>
       )}
     </Container>
