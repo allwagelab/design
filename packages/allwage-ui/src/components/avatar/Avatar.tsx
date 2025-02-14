@@ -5,7 +5,7 @@ import { UserIcon } from '../../icons/user-icon'
 
 const AVATAR_SIZES: Record<AvatarSize, { size: number; iconSize: number }> = {
   xs: { size: 32, iconSize: 13.33 },
-  sm: { size: 52, iconSize: 25.33 },
+  sm: { size: 48, iconSize: 22.33 },
   md: { size: 56, iconSize: 26.67 },
   lg: { size: 80, iconSize: 38.1 },
 }
