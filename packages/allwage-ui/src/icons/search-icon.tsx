@@ -1,8 +1,4 @@
-interface IconProps {
-  size?: number
-  color?: string
-  className?: string
-}
+import type { IconProps } from './types'
 
 export function SearchIcon({ size = 20, color = 'currentColor', className }: IconProps) {
   return (

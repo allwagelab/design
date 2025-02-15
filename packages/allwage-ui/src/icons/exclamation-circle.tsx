@@ -1,8 +1,4 @@
-interface IconProps {
-  size?: number
-  color?: string
-  className?: string
-}
+import type { IconProps } from './types'
 
 export function ExclamationCircleIcon({ size = 24, color = 'currentColor', className }: IconProps) {
   return (

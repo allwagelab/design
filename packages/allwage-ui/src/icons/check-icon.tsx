@@ -1,8 +1,6 @@
-interface CheckIconProps {
-  className?: string
-}
+import type { IconProps } from './types'
 
-export function CheckIcon({ className }: CheckIconProps) {
+export function CheckIcon({ className }: IconProps) {
   return (
     <svg
       width="16"

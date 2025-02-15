@@ -104,7 +104,7 @@ const TableCell = styled.td<{
   width?: number
   color?: string
 }>`
-  padding: 0 16px;
+  padding: 0 8px;
   text-align: ${props => props.align || 'left'};
   vertical-align: middle;
   color: ${props => props.color || theme.colors.gray90};
@@ -126,7 +126,7 @@ const TableHeaderCell = styled.th<{
   width?: number
   color?: string
 }>`
-  padding: 0 16px;
+  padding: 0 8px;
   text-align: ${props => props.align || 'left'};
   vertical-align: middle;
   color: ${props => props.color || theme.colors.baseBlack};
@@ -134,6 +134,8 @@ const TableHeaderCell = styled.th<{
   font-weight: 400;
   width: ${props => props.width}px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:first-of-type {
     text-align: center;

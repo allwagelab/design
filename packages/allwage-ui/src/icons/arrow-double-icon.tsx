@@ -1,9 +1,6 @@
-interface ArrowDoubleIconProps {
-  size?: number
-  className?: string
-}
+import type { IconProps } from './types'
 
-export function ArrowDoubleIcon({ size = 16, className }: ArrowDoubleIconProps) {
+export function ArrowDoubleIcon({ size = 16, className }: IconProps) {
   return (
     <svg
       width={size}

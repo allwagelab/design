@@ -1,7 +1,7 @@
 import { theme } from '@allwagelab/design'
 import styled from '@emotion/styled'
 
-import { UserIcon } from '../../icons/user-icon'
+import { UserRoundedIcon } from '../../icons/user-rounded-icon'
 
 const AVATAR_SIZES: Record<AvatarSize, { size: number; iconSize: number }> = {
   xs: { size: 32, iconSize: 13.33 },
@@ -52,7 +52,7 @@ export default function Avatar({ size = 'md', src, alt, className }: AvatarProps
         <AvatarImage src={src} alt={alt || 'avatar'} />
       ) : (
         <IconWrapper size={size}>
-          <UserIcon size={AVATAR_SIZES[size].iconSize} />
+          <UserRoundedIcon size={AVATAR_SIZES[size].iconSize} />
         </IconWrapper>
       )}
     </AvatarContainer>
