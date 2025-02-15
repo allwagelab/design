@@ -33,7 +33,6 @@ const Container = styled.div<{ disabled?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   width: 100%;
   margin: 0 auto;
   opacity: ${props => (props.disabled ? 0.4 : 1)};
