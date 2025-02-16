@@ -14,7 +14,8 @@ export const GlobalStyles = () => (
       html {
         line-height: normal;
         text-size-adjust: none;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
           'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         box-sizing: border-box;
       }
@@ -60,8 +61,9 @@ export const GlobalStyles = () => (
       kbd,
       samp,
       pre {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-          'Courier New', monospace;
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+          monospace;
         font-size: 1em;
       }
 

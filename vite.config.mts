@@ -4,6 +4,7 @@ import preserveDirectives from 'rollup-plugin-preserve-directives'
 import { defineConfig } from 'vite'
 import checker from 'vite-plugin-checker'
 import dts from 'vite-plugin-dts'
+import svgr from 'vite-plugin-svgr'
 
 export default defineConfig({
   build: {
@@ -34,5 +35,6 @@ export default defineConfig({
       },
     }),
     preserveDirectives(),
+    svgr(),
   ],
 })

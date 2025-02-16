@@ -1,8 +1,7 @@
 import { theme } from '@allwagelab/design'
 import styled from '@emotion/styled'
 
-import { ArrowDoubleIcon } from '../../icons/arrow-double-icon'
-import { ArrowIcon } from '../../icons/arrow-icon'
+import { DoubleArrowIcon, ArrowIcon } from '../../icons'
 
 type PaginationVariant = 'outline' | 'filled'
 type PaginationSize = 'sm' | 'md' | 'lg'
@@ -82,9 +81,9 @@ const ArrowRightIcon = styled(ArrowIcon)`
   transform: rotate(-90deg);
 `
 
-const ArrowDoubleLeftIcon = styled(ArrowDoubleIcon)``
+const ArrowDoubleLeftIcon = styled(DoubleArrowIcon)``
 
-const ArrowDoubleRightIcon = styled(ArrowDoubleIcon)`
+const ArrowDoubleRightIcon = styled(DoubleArrowIcon)`
   transform: rotate(-180deg);
 `
 
@@ -186,12 +185,15 @@ export default function Pagination({
     <Container className={className} disabled={disabled}>
       {showDoubleArrows && (
         <ArrowButton onClick={() => onChange(1)} disabled={isFirstPage} color={color} size={size}>
-          <ArrowDoubleLeftIcon size={BUTTON_SIZES[size].iconSize} />
+          <ArrowDoubleLeftIcon
+            width={BUTTON_SIZES[size].iconSize}
+            height={BUTTON_SIZES[size].iconSize}
+          />
         </ArrowButton>
       )}
 
       <ArrowButton onClick={handlePrevPage} disabled={isFirstPage} color={color} size={size}>
-        <ArrowLeftIcon size={BUTTON_SIZES[size].iconSize} />
+        <ArrowLeftIcon width={BUTTON_SIZES[size].iconSize} height={BUTTON_SIZES[size].iconSize} />
       </ArrowButton>
 
       <NumberWrapper>
@@ -211,7 +213,7 @@ export default function Pagination({
       </NumberWrapper>
 
       <ArrowButton onClick={handleNextPage} disabled={isLastPage} color={color} size={size}>
-        <ArrowRightIcon size={BUTTON_SIZES[size].iconSize} />
+        <ArrowRightIcon width={BUTTON_SIZES[size].iconSize} height={BUTTON_SIZES[size].iconSize} />
       </ArrowButton>
 
       {showDoubleArrows && (
@@ -221,7 +223,10 @@ export default function Pagination({
           color={color}
           size={size}
         >
-          <ArrowDoubleRightIcon size={BUTTON_SIZES[size].iconSize} />
+          <ArrowDoubleRightIcon
+            width={BUTTON_SIZES[size].iconSize}
+            height={BUTTON_SIZES[size].iconSize}
+          />
         </ArrowButton>
       )}
     </Container>

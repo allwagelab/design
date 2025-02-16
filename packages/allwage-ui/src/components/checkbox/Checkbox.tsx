@@ -5,7 +5,7 @@ import isPropValid from '@emotion/is-prop-valid'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-import { CheckIcon } from '../../icons/check-icon'
+import { CheckIcon } from '../../icons'
 
 interface CheckboxProps {
   checked?: boolean

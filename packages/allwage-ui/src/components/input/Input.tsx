@@ -5,7 +5,7 @@ import isPropValid from '@emotion/is-prop-valid'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
-import { SearchIcon } from '../../icons/search-icon'
+import { SearchIcon } from '../../icons'
 
 type InputSizeVariant = 'sm' | 'md' | 'lg' | 'xl'
 
@@ -171,7 +171,10 @@ const Input = forwardRef<HTMLInputElement, InputBaseProps>(
             isFocused={isFocused}
             isHovered={isHovered}
           >
-            <SearchIcon size={sizeVariant === 'sm' ? 16 : 20} />
+            <SearchIcon
+              width={sizeVariant === 'sm' ? 16 : 20}
+              height={sizeVariant === 'sm' ? 16 : 20}
+            />
           </SearchIconWrapper>
         )}
         <InputBase
