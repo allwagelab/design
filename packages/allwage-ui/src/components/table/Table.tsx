@@ -100,6 +100,7 @@ const TableHeaderRow = styled(TableRow)`
 `
 
 const TableCell = styled.td<{
+  showNo?: boolean
   align?: 'left' | 'center' | 'right'
   width?: number
   color?: string
@@ -114,17 +115,22 @@ const TableCell = styled.td<{
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:first-of-type {
-    text-align: center;
-    width: 60px;
-    color: ${theme.colors.gray70};
-  }
+  ${props =>
+    props.showNo &&
+    css`
+      &:first-of-type {
+        text-align: center;
+        width: 60px;
+        color: ${theme.colors.baseRed};
+      }
+    `}
 `
 
 const TableHeaderCell = styled.th<{
   align?: 'left' | 'center' | 'right'
   width?: number
   color?: string
+  showNo?: boolean
 }>`
   padding: 0 8px;
   text-align: ${props => props.align || 'left'};
@@ -137,10 +143,14 @@ const TableHeaderCell = styled.th<{
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:first-of-type {
-    text-align: center;
-    width: 60px;
-  }
+  ${props =>
+    props.showNo &&
+    css`
+      &:first-of-type {
+        text-align: center;
+        width: 60px;
+      }
+    `}
 `
 
 const NoDataRow = styled(TableRow)`
