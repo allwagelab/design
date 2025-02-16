@@ -3,7 +3,7 @@ import { forwardRef } from 'react'
 import { theme } from '@allwagelab/design'
 import styled from '@emotion/styled'
 
-import { ExclamationCircleIcon } from '../../icons/exclamation-circle'
+import { ExclamationCircleIcon } from '../../icons'
 import Dot from '../dot/Dot'
 
 interface ProgressProps {
@@ -103,7 +103,7 @@ const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               {type === 'normal' ? (
                 <Dot color={color} />
               ) : (
-                <ExclamationCircleIcon size={15} color={color} />
+                <ExclamationCircleIcon width={15} height={15} color={color} />
               )}
               {valueLabel}
             </Value>
