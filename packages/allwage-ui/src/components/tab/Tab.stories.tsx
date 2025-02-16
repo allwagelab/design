@@ -37,9 +37,9 @@ export default meta
 type Story = StoryObj<typeof Tab>
 
 const items = [
-  { id: 'tab1', label: '탭 1' },
-  { id: 'tab2', label: '탭 2' },
-  { id: 'tab3', label: '탭 3' },
+  { id: 'tab1', label: '탭 제목 1' },
+  { id: 'tab2', label: '탭 제목 2' },
+  { id: 'tab3', label: '탭 제목 3' },
 ]
 
 // 기본 탭
@@ -68,9 +68,9 @@ export const Interactive: Story = {
       <div style={{ width: '600px' }}>
         <Tab items={items} activeId={activeId} onChange={setActiveId} />
         <div style={{ marginTop: '24px', padding: '16px' }}>
-          {activeId === 'tab1' && <div>스케줄 정보 내용</div>}
-          {activeId === 'tab2' && <div>급여 정보 내용</div>}
-          {activeId === 'tab3' && <div>근로 조건 정보 내용</div>}
+          {activeId === 'tab1' && <div>내용 1</div>}
+          {activeId === 'tab2' && <div>내용 2</div>}
+          {activeId === 'tab3' && <div>내용 3</div>}
         </div>
       </div>
     )
