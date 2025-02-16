@@ -1,7 +1,12 @@
 import { theme } from '@allwagelab/design'
 import styled from '@emotion/styled'
 
-import { DoubleArrowIcon, ArrowIcon } from '../../icons'
+import {
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+} from '../../icons'
 
 type PaginationVariant = 'outline' | 'filled'
 type PaginationSize = 'sm' | 'md' | 'lg'
@@ -71,20 +76,6 @@ const ArrowButton = styled.button<{ isActive?: boolean; color?: string; size?: P
       fill: ${theme.colors.gray30};
     }
   }
-`
-
-const ArrowLeftIcon = styled(ArrowIcon)`
-  transform: rotate(90deg);
-`
-
-const ArrowRightIcon = styled(ArrowIcon)`
-  transform: rotate(-90deg);
-`
-
-const ArrowDoubleLeftIcon = styled(DoubleArrowIcon)``
-
-const ArrowDoubleRightIcon = styled(DoubleArrowIcon)`
-  transform: rotate(-180deg);
 `
 
 const NumberWrapper = styled.div`
@@ -185,7 +176,7 @@ export default function Pagination({
     <Container className={className} disabled={disabled}>
       {showDoubleArrows && (
         <ArrowButton onClick={() => onChange(1)} disabled={isFirstPage} color={color} size={size}>
-          <ArrowDoubleLeftIcon
+          <DoubleArrowLeftIcon
             width={BUTTON_SIZES[size].iconSize}
             height={BUTTON_SIZES[size].iconSize}
           />
@@ -223,7 +214,7 @@ export default function Pagination({
           color={color}
           size={size}
         >
-          <ArrowDoubleRightIcon
+          <DoubleArrowRightIcon
             width={BUTTON_SIZES[size].iconSize}
             height={BUTTON_SIZES[size].iconSize}
           />

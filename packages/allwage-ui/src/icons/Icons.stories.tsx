@@ -107,10 +107,10 @@ export const IconSearch: StoryObj = {
 export const IconSizes: StoryObj = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Icons.ArrowIcon width={12} height={12} />
-      <Icons.ArrowIcon width={16} height={16} />
-      <Icons.ArrowIcon width={24} height={24} />
-      <Icons.ArrowIcon width={32} height={32} />
+      <Icons.ArrowUpIcon width={12} height={12} />
+      <Icons.ArrowUpIcon width={16} height={16} />
+      <Icons.ArrowUpIcon width={24} height={24} />
+      <Icons.ArrowUpIcon width={32} height={32} />
     </div>
   ),
 }
@@ -118,10 +118,10 @@ export const IconSizes: StoryObj = {
 export const IconColors: StoryObj = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem' }}>
-      <Icons.ArrowIcon width={24} height={24} color="#FF0000" />
-      <Icons.ArrowIcon width={24} height={24} color="#00FF00" />
-      <Icons.ArrowIcon width={24} height={24} color="#0000FF" />
-      <Icons.ArrowIcon width={24} height={24} color="#FFD700" />
+      <Icons.ArrowUpIcon width={24} height={24} color="#FF0000" />
+      <Icons.ArrowDownIcon width={24} height={24} color="#00FF00" />
+      <Icons.ArrowLeftIcon width={24} height={24} color="#0000FF" />
+      <Icons.ArrowRightIcon width={24} height={24} color="#FFD700" />
     </div>
   ),
 }
