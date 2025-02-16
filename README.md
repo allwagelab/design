@@ -8,7 +8,7 @@
 ### 📚 문서
 
 컴포넌트들이 궁금하신가요?
-[Allwage Frontend Storybook](https://6773a4014b40c68b26b59e81-hopamtvsbe.chromatic.com/)에서
+[Allwage Frontend Storybook](https://6773a4014b40c68b26b59e81-qpoogdqcai.chromatic.com/)에서
 깔끔하게 정리된 컴포넌트 도감을 확인하실 수 있습니다.
 
 ### 🤝 관련 서비스
