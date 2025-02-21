@@ -175,11 +175,11 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
 
-  packages/allwage-ui:
+  packages/react:
     devDependencies:
       '@allwagelab/design':
-        specifier: workspace:*
-        version: link:../allwage-theme
+        specifier: ^1.0.1
+        version: 1.0.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       '@allwagelab/typescript-config':
         specifier: ^0.0.3
         version: 0.0.3
@@ -203,6 +203,13 @@ packages:
 
   '@adobe/css-tools@4.4.1':
     resolution: {integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==}
+
+  '@allwagelab/design@1.0.1':
+    resolution: {integrity: sha512-hZ6epVwv7PjluvabgnrXylC5G+Q5XjvJy7xuWCvSzmwDj6aNJZ9egGlV0o4U4VHAEVn1PiouJp6Ml97gbExceA==}
+    peerDependencies:
+      '@emotion/react': ^11.0
+      '@emotion/styled': ^11.0
+      react: ^18.0
 
   '@allwagelab/typescript-config@0.0.3':
     resolution: {integrity: sha512-VYyfBx5SVajm9Eq3ycIYWhXR4q/RheeSWcyfaZ7kq9uqnLPtXiL/N2gdyuffnZvewVzRAGCshJLOz3oqDNhfbQ==}
@@ -5509,6 +5516,12 @@ snapshots:
 
   '@adobe/css-tools@4.4.1':
     optional: true
+
+  '@allwagelab/design@1.0.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
+      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
+      react: 18.3.1
 
   '@allwagelab/typescript-config@0.0.3': {}
 
