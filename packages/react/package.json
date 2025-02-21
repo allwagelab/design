@@ -1,6 +1,6 @@
 {
   "name": "@allwagelab/react",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "description": "Allwage React Components",
   "license": "MIT",
   "author": {
@@ -44,17 +44,19 @@
     ]
   },
   "devDependencies": {
-    "react": "^18.3.1",
+    "@allwagelab/design": "^1.0.1",
+    "@allwagelab/typescript-config": "^0.0.3",
+    "@emotion/is-prop-valid": "^1.3.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@emotion/is-prop-valid": "^1.3.1",
-    "@allwagelab/design": "^1.0.0",
-    "@allwagelab/typescript-config": "^0.0.3"
+    "react": "^18.3.1",
+    "dayjs": "^1.11.13"
   },
   "peerDependencies": {
     "@allwagelab/design": "^1.0.0",
-    "react": "^18.0",
     "@emotion/react": "^11.0",
-    "@emotion/styled": "^11.0"
+    "@emotion/styled": "^11.0",
+    "react": "^18.0",
+    "dayjs": "^1.11.0"
   }
 }
