@@ -1,5 +1,4 @@
 export { default as Tab } from './tab/Tab'
-
 export { default as Table } from './table/Table'
 export { default as Dot } from './dot/Dot'
 export { default as Input } from './input/Input'
@@ -13,5 +12,9 @@ export { default as Pagination } from './pagination/Pagination'
 export { default as Checkbox } from './checkbox/Checkbox'
 export { default as Textarea } from './textarea/Textarea'
 export { default as LoadingSpinner } from './spinner/LoadingSpinner'
-export * as Icons from '../icons'
+export { default as Calendar } from './calendar/Calendar'
+export { default as CalendarInput } from './calendar/CalendarInput'
+export { default as DialogBtn } from './dialogBtn/DialogBtn'
+export { default as Portal } from './portal/Portal'
+
 export * from './radio'

@@ -33,7 +33,7 @@ const INPUT_SIZES: Record<InputSizeVariant, ReturnType<typeof css>> = {
   `,
 }
 
-interface BaseInputCssProps {
+export interface BaseInputCssProps {
   full?: boolean
   sizeVariant?: InputSizeVariant
   hasIcon?: boolean

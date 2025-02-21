@@ -51,6 +51,7 @@ export const colors = {
   yellow100: '#F67F17',
 
   blue10: '#F1F5FF',
+  blue10_10: 'rgba(51, 137, 255, 0.1)',
   blue20: '#E4ECFF',
   blue30: '#9DBBFF',
   blue40: '#709BFF',

@@ -37,6 +37,7 @@ export { default as SettingIcon } from './assets/setting-icon.svg?react'
 export { default as UserIcon } from './assets/user-icon.svg?react'
 export { default as UserRoundedIcon } from './assets/user-rounded-icon.svg?react'
 export { default as WarningIcon } from './assets/warning-icon.svg?react'
+export { default as TimeIcon } from './assets/time-icon.svg?react'
 
 // Types
 export * from './types'

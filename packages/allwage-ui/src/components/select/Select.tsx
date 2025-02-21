@@ -5,6 +5,8 @@ import isPropValid from '@emotion/is-prop-valid'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
+import { ArrowDownIcon } from '../../icons'
+
 type SelectSize = 'sm' | 'md' | 'lg' | 'xl'
 
 const SELECT_SIZES: Record<SelectSize, ReturnType<typeof css>> = {
@@ -138,10 +140,10 @@ const DropdownItem = styled.li<{ isSelected: boolean; size?: SelectSize }>`
   }
 `
 
-// const ChevronIcon = styled(ChevronDown)<{ isOpen: boolean }>`
-//   transition: transform 0.2s ease;
-//   transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
-// `
+const ChevronIcon = styled(ArrowDownIcon)<{ isOpen: boolean }>`
+  transition: transform 0.2s ease;
+  transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
+`
 
 export default function Select({
   options,
@@ -151,8 +153,9 @@ export default function Select({
   size = 'md',
   full = false,
   className,
+  children,
   onChange,
-}: SelectProps) {
+}: React.PropsWithChildren<SelectProps>) {
   const [isOpen, setIsOpen] = useState(false)
   const selectedOption = options.find(option => option.value === value)
 
@@ -174,9 +177,10 @@ export default function Select({
         aria-expanded={isOpen}
       >
         <span className="select-value">{selectedOption ? selectedOption.label : placeholder}</span>
-        {/* <ChevronIcon size={20} isOpen={isOpen} /> */}
+        <ChevronIcon isOpen={isOpen} />
       </SelectButton>
       <DropdownList isOpen={isOpen} role="listbox">
+        {children}
         {options.map(option => (
           <DropdownItem
             key={option.value}
