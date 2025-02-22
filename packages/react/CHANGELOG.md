@@ -1,5 +1,12 @@
 # @allwagelab/react
 
+## 1.0.10
+
+### Patch Changes
+
+- a296cc5: add className props & add cursor pointer css property
+- add useOnclickOutside hook on select component
+
 ## 0.0.5
 
 ### Patch Changes

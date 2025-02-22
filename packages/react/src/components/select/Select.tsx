@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { theme } from '@allwagelab/design'
 import isPropValid from '@emotion/is-prop-valid'
@@ -157,6 +157,7 @@ export default function Select({
   onChange,
 }: React.PropsWithChildren<SelectProps>) {
   const [isOpen, setIsOpen] = useState(false)
+  const selectRef = useRef<HTMLDivElement>(null)
   const selectedOption = options.find(option => option.value === value)
 
   const handleSelect = (value: string) => {
@@ -164,8 +165,32 @@ export default function Select({
     setIsOpen(false)
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen])
+
   return (
-    <SelectWrapper full={full} className={className}>
+    <SelectWrapper ref={selectRef} full={full} className={className}>
       <SelectButton
         type="button"
         disabled={disabled}
