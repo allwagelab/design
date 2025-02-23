@@ -1,5 +1,11 @@
 # @allwagelab/react
 
+## 1.0.11
+
+### Patch Changes
+
+- add remove button on select list
+
 ## 1.0.10
 
 ### Patch Changes

@@ -143,6 +143,7 @@ export const Examples: Story = {
             { value: 'position2', label: '팀원' },
           ]}
           placeholder="직책을 선택해주세요"
+          hasRemoveBtn
         />
       </div>
     </div>
