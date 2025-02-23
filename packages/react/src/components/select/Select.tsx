@@ -178,9 +178,19 @@ export default function Select({
     setIsOpen(false)
   }
 
+<<<<<<< HEAD
   useOnClickOutside(selectRef, () => setIsOpen(false))
 
   useEffect(() => {
+=======
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+>>>>>>> main
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsOpen(false)
@@ -188,10 +198,18 @@ export default function Select({
     }
 
     if (isOpen) {
+<<<<<<< HEAD
+=======
+      document.addEventListener('mousedown', handleClickOutside)
+>>>>>>> main
       document.addEventListener('keydown', handleKeyDown)
     }
 
     return () => {
+<<<<<<< HEAD
+=======
+      document.removeEventListener('mousedown', handleClickOutside)
+>>>>>>> main
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [isOpen])
