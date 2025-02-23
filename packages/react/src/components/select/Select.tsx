@@ -5,6 +5,7 @@ import isPropValid from '@emotion/is-prop-valid'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
+import { useOnClickOutside } from '../../hooks'
 import { ArrowDownIcon } from '../../icons'
 
 type SelectSize = 'sm' | 'md' | 'lg' | 'xl'
@@ -48,7 +49,9 @@ interface SelectProps extends BaseSelectCssProps {
   value?: string
   placeholder?: string
   className?: string
+  hasRemoveBtn?: boolean
   onChange?: (value: string) => void
+  onRemove?: (value: string) => (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 const SelectWrapper = styled.div<{ full?: BaseSelectCssProps['full'] }>`
@@ -128,6 +131,7 @@ const DropdownList = styled.ul<{ isOpen: boolean }>`
 const DropdownItem = styled.li<{ isSelected: boolean; size?: SelectSize }>`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 1rem;
   color: ${theme.colors.gray100};
   cursor: pointer;
@@ -145,6 +149,13 @@ const ChevronIcon = styled(ArrowDownIcon)<{ isOpen: boolean }>`
   transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
 `
 
+const RemoveBtn = styled.button`
+  ${theme.typography.caption.c1_rg};
+  font-weight: 600;
+  color: ${theme.colors.gray90};
+  z-index: 11;
+`
+
 export default function Select({
   options,
   value,
@@ -153,8 +164,10 @@ export default function Select({
   size = 'md',
   full = false,
   className,
+  hasRemoveBtn,
   children,
   onChange,
+  onRemove,
 }: React.PropsWithChildren<SelectProps>) {
   const [isOpen, setIsOpen] = useState(false)
   const selectRef = useRef<HTMLDivElement>(null)
@@ -165,13 +178,9 @@ export default function Select({
     setIsOpen(false)
   }
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
+  useOnClickOutside(selectRef, () => setIsOpen(false))
 
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsOpen(false)
@@ -179,12 +188,10 @@ export default function Select({
     }
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
       document.addEventListener('keydown', handleKeyDown)
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleKeyDown)
     }
   }, [isOpen])
@@ -216,6 +223,7 @@ export default function Select({
             aria-selected={option.value === value}
           >
             {option.label}
+            {hasRemoveBtn && <RemoveBtn onClick={onRemove?.(option.value)}>삭제</RemoveBtn>}
           </DropdownItem>
         ))}
       </DropdownList>
