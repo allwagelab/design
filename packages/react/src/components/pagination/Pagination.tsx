@@ -8,69 +8,100 @@ import {
   ArrowRightIcon,
 } from '../../icons'
 
-type PaginationVariant = 'outline' | 'filled'
-type PaginationSize = 'sm' | 'md' | 'lg'
-
-const BUTTON_SIZES: Record<
-  PaginationSize,
-  { width: number; height: number; fontSize: number; iconSize: number }
-> = {
-  sm: { width: 24, height: 24, fontSize: 12, iconSize: 12 },
-  md: { width: 32, height: 32, fontSize: 14, iconSize: 16 },
-  lg: { width: 40, height: 40, fontSize: 16, iconSize: 20 },
-}
-
 interface PaginationProps {
   current: number
   total: number
   onChange: (page: number) => void
-  max?: number
   disabled?: boolean
+  size?: 'sm' | 'md' | 'lg'
+  variant?: 'filled' | 'outline'
   color?: string
-  variant?: PaginationVariant
-  size?: PaginationSize
-  showArrowDoubleIcon?: boolean
+  showDoubleArrow?: boolean
   className?: string
 }
+
+const BUTTON_SIZES = {
+  sm: { width: 28, height: 28, fontSize: 12, iconSize: 14 },
+  md: { width: 32, height: 32, fontSize: 14, iconSize: 16 },
+  lg: { width: 36, height: 36, fontSize: 16, iconSize: 18 },
+} as const
 
 const Container = styled.div<{ disabled?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 4px;
   width: 100%;
   margin: 0 auto;
   opacity: ${props => (props.disabled ? 0.4 : 1)};
   pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
 `
 
-const ArrowButton = styled.button<{ isActive?: boolean; color?: string; size?: PaginationSize }>`
+const Button = styled.button<{
+  isCurrentPage?: boolean
+  size?: 'sm' | 'md' | 'lg'
+  variant?: 'filled' | 'outline'
+  color?: string
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: ${props => BUTTON_SIZES[props.size || 'md'].width}px;
+  width: ${props => BUTTON_SIZES[props.size || 'md'].width}px;
   height: ${props => BUTTON_SIZES[props.size || 'md'].height}px;
-  border-radius: 2px;
-  border: none;
-  background: none;
-  ${props => (props.size === 'sm' ? theme.typography.body.b3_rg : theme.typography.body.b2_rg)};
-  color: ${props => (props.isActive ? props.color || theme.colors.gray90 : theme.colors.gray60)};
+  border-radius: 8px;
+  border: 1px solid
+    ${props =>
+      props.isCurrentPage
+        ? props.variant === 'outline'
+          ? props.color || theme.colors.blue50
+          : 'transparent'
+        : theme.colors.gray30};
+  background: ${props =>
+    props.isCurrentPage
+      ? props.variant === 'outline'
+        ? 'transparent'
+        : props.color || theme.colors.blue50
+      : theme.colors.baseWhite};
+  color: ${props =>
+    props.isCurrentPage
+      ? props.variant === 'outline'
+        ? props.color || theme.colors.blue50
+        : theme.colors.baseWhite
+      : theme.colors.gray90};
+  font-size: ${props => BUTTON_SIZES[props.size || 'md'].fontSize}px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   svg {
-    fill: ${theme.colors.gray50};
+    width: ${props => BUTTON_SIZES[props.size || 'md'].iconSize}px;
+    height: ${props => BUTTON_SIZES[props.size || 'md'].iconSize}px;
+    fill: ${theme.colors.gray60};
   }
 
   &:hover:not(:disabled) {
-    background-color: ${theme.colors.gray30};
+    border-color: ${props =>
+      props.isCurrentPage
+        ? props.variant === 'outline'
+          ? props.color || theme.colors.blue60
+          : 'transparent'
+        : theme.colors.gray30};
+    background: ${props =>
+      props.isCurrentPage
+        ? props.variant === 'outline'
+          ? `${props.color || theme.colors.blue50}10`
+          : props.color || theme.colors.blue60
+        : theme.colors.gray10};
 
     svg {
-      fill: ${theme.colors.gray60};
+      fill: ${theme.colors.gray90};
     }
   }
 
   &:disabled {
     cursor: default;
     color: ${theme.colors.gray30};
+    border: none;
 
     svg {
       fill: ${theme.colors.gray30};
@@ -78,86 +109,71 @@ const ArrowButton = styled.button<{ isActive?: boolean; color?: string; size?: P
   }
 `
 
-const NumberWrapper = styled.div`
+const Ellipsis = styled.span<{ size?: 'sm' | 'md' | 'lg' }>`
   display: flex;
-  justify-content: center;
   align-items: center;
-`
-
-const NumberButton = styled.button<{
-  isCurrentPage: boolean
-  color?: string
-  variant?: PaginationVariant
-  size?: PaginationSize
-}>`
-  ${props => (props.size === 'sm' ? theme.typography.body.b3_rg : theme.typography.body.b2_rg)};
-  position: relative;
-  display: flex;
   justify-content: center;
-  align-items: center;
   width: ${props => BUTTON_SIZES[props.size || 'md'].width}px;
   height: ${props => BUTTON_SIZES[props.size || 'md'].height}px;
-  border-radius: 2px;
-  border: ${props =>
-    props.isCurrentPage && props.variant === 'outline' && props.color
-      ? `1px solid ${props.color}20`
-      : 'none'};
-  color: ${props =>
-    props.isCurrentPage ? props.color || theme.colors.gray90 : theme.colors.gray50};
-  background-color: ${props =>
-    props.isCurrentPage && props.color
-      ? props.variant === 'outline'
-        ? 'transparent'
-        : `${props.color}10`
-      : 'transparent'};
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover:not(:disabled) {
-    background-color: ${props =>
-      props.isCurrentPage && props.color
-        ? props.variant === 'outline'
-          ? `${props.color}10`
-          : `${props.color}20`
-        : theme.colors.gray20};
-  }
-
-  &:disabled {
-    cursor: default;
-    color: ${theme.colors.gray30};
-    border-color: ${theme.colors.gray30};
-    background-color: ${props => (props.isCurrentPage ? theme.colors.gray10 : 'transparent')};
-  }
+  font-size: ${props => BUTTON_SIZES[props.size || 'md'].fontSize}px;
+  font-weight: 600;
 `
 
-const createPageList = (currentPage: number, maxPageCount: number, totalPages: number) => {
-  const currentGroup = Math.ceil(currentPage / maxPageCount)
-  const start = (currentGroup - 1) * maxPageCount + 1
-  const end = Math.min(currentGroup * maxPageCount, totalPages)
+const createPageList = (current: number, total: number) => {
+  const items: (number | string)[] = []
+  const SIBLING_COUNT = 1 // 현재 페이지 양쪽에 표시할 페이지 수
+  const DOTS = '...'
 
-  const result = []
-  for (let i = start; i <= end; i++) {
-    result.push(i)
+  if (total <= 7) {
+    // 전체 페이지가 7 이하인 경우 모든 페이지 표시
+    for (let i = 1; i <= total; i++) {
+      items.push(i)
+    }
+  } else {
+    // 첫 페이지는 항상 표시
+    items.push(1)
+
+    if (current <= 4) {
+      // 1, 2, 3, 4, 5, ..., 10
+      for (let i = 2; i <= 5; i++) {
+        items.push(i)
+      }
+      items.push(DOTS)
+      items.push(total)
+    } else if (current >= total - 3) {
+      // 1, ..., 6, 7, 8, 9, 10
+      items.push(DOTS)
+      for (let i = total - 4; i <= total; i++) {
+        items.push(i)
+      }
+    } else {
+      // 1, ..., 4, 5, 6, ..., 10
+      items.push(DOTS)
+      for (let i = current - SIBLING_COUNT; i <= current + SIBLING_COUNT; i++) {
+        items.push(i)
+      }
+      items.push(DOTS)
+      items.push(total)
+    }
   }
 
-  return result
+  return items
 }
 
 export default function Pagination({
   current,
   total,
   onChange,
-  max = 10,
-
   disabled = false,
-  color,
-  variant = 'filled',
   size = 'md',
-  showArrowDoubleIcon = true,
+  variant = 'filled',
+  color,
+  showDoubleArrow = true,
   className,
 }: PaginationProps) {
-  const pageList = createPageList(current, max, total)
-  const showDoubleArrows = showArrowDoubleIcon && total > max
+  const pageList = createPageList(current, total)
+  const isFirstPage = current <= 1
+  const isLastPage = current >= total
 
   const handlePrevPage = () => {
     if (current <= 1) return
@@ -169,56 +185,76 @@ export default function Pagination({
     onChange(current + 1)
   }
 
-  const isFirstPage = current <= 1
-  const isLastPage = current >= total
-
   return (
     <Container className={className} disabled={disabled}>
-      {showDoubleArrows && (
-        <ArrowButton onClick={() => onChange(1)} disabled={isFirstPage} color={color} size={size}>
-          <DoubleArrowLeftIcon
-            width={BUTTON_SIZES[size].iconSize}
-            height={BUTTON_SIZES[size].iconSize}
-          />
-        </ArrowButton>
+      {showDoubleArrow && (
+        <Button
+          onClick={() => onChange(1)}
+          disabled={isFirstPage}
+          size={size}
+          variant={variant}
+          color={color}
+        >
+          <DoubleArrowLeftIcon />
+        </Button>
       )}
+      <Button
+        onClick={handlePrevPage}
+        disabled={isFirstPage}
+        size={size}
+        variant={variant}
+        color={color}
+      >
+        <ArrowLeftIcon />
+      </Button>
 
-      <ArrowButton onClick={handlePrevPage} disabled={isFirstPage} color={color} size={size}>
-        <ArrowLeftIcon width={BUTTON_SIZES[size].iconSize} height={BUTTON_SIZES[size].iconSize} />
-      </ArrowButton>
+      {pageList.map((page, index) => {
+        if (page === '...') {
+          return (
+            <Ellipsis key={`ellipsis-${index}`} size={size}>
+              ...
+            </Ellipsis>
+          )
+        }
 
-      <NumberWrapper>
-        {pageList.map(page => (
-          <NumberButton
-            key={page}
-            type="button"
-            isCurrentPage={page === current}
-            onClick={() => onChange(page)}
-            color={color}
-            variant={variant}
+        const isMiddleSection =
+          pageList.length === 7 && pageList[2] === '...' && pageList[5] === '...'
+
+        const isHighlighted = isMiddleSection ? index === 3 : page === current
+
+        return (
+          <Button
+            key={`${page}-${index}`}
+            isCurrentPage={isHighlighted}
+            onClick={() => onChange(page as number)}
             size={size}
+            variant={variant}
+            color={color}
           >
             {page}
-          </NumberButton>
-        ))}
-      </NumberWrapper>
+          </Button>
+        )
+      })}
 
-      <ArrowButton onClick={handleNextPage} disabled={isLastPage} color={color} size={size}>
-        <ArrowRightIcon width={BUTTON_SIZES[size].iconSize} height={BUTTON_SIZES[size].iconSize} />
-      </ArrowButton>
-
-      {showDoubleArrows && (
-        <ArrowButton
+      <Button
+        onClick={handleNextPage}
+        disabled={isLastPage}
+        size={size}
+        variant={variant}
+        color={color}
+      >
+        <ArrowRightIcon />
+      </Button>
+      {showDoubleArrow && (
+        <Button
           onClick={() => onChange(total)}
           disabled={isLastPage}
-          color={color}
           size={size}
+          variant={variant}
+          color={color}
         >
-          <DoubleArrowRightIcon
-            width={BUTTON_SIZES[size].iconSize}
-            height={BUTTON_SIZES[size].iconSize}
-          />
-        </ArrowButton>
+          <DoubleArrowRightIcon />
+        </Button>
       )}
     </Container>
   )

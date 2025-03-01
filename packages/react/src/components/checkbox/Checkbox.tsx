@@ -100,7 +100,7 @@ export default function Checkbox({
     <CheckboxContainer disabled={disabled} className={className}>
       <CheckboxInput
         type="checkbox"
-        checked={checked}
+        defaultChecked={checked}
         disabled={disabled}
         onChange={onChange}
         name={name}

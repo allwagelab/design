@@ -31,10 +31,10 @@ const meta: Meta<typeof Table> = {
       control: 'text',
       description: '테이블 제목 (접근성용)',
     },
-    showNo: {
-      control: 'boolean',
-      description: 'No. 컬럼 표시 여부',
-      defaultValue: false,
+    startNo: {
+      control: 'number',
+      description: 'No. 컬럼 시작 번호',
+      defaultValue: 1,
     },
     noDataMessage: {
       control: 'text',
@@ -61,9 +61,13 @@ const DATA = [
 
 // 기본 테이블
 export const Default: Story = {
-  render: () => (
+  args: {
+    columns: COLUMNS,
+    startNo: 1,
+  },
+  render: ({ startNo, columns }) => (
     <div style={{ padding: '24px' }}>
-      <Table columns={COLUMNS} showNo>
+      <Table columns={columns} startNo={startNo}>
         {DATA.map(row => (
           <Table.Row key={row.id}>
             <Table.Cell>{row.workType}</Table.Cell>
@@ -94,7 +98,7 @@ export const WithCheckbox: Story = {
           hasCheckbox
           selectedIds={selectedIds}
           onSelectedChange={setSelectedIds}
-          showNo
+          startNo={1}
         >
           {DATA.map(row => (
             <Table.Row key={row.id}>
@@ -115,13 +119,11 @@ export const NoData: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <div style={{ padding: '24px', backgroundColor: theme.colors.gray0 }}>
         <h3>기본 메시지</h3>
-        <Table columns={COLUMNS} showNo>
-          {[]}
-        </Table>
+        <Table columns={COLUMNS}>{[]}</Table>
       </div>
       <div style={{ padding: '24px', backgroundColor: theme.colors.gray0 }}>
         <h3>커스텀 텍스트 메시지</h3>
-        <Table columns={COLUMNS} showNo noDataMessage="표시할 데이터가 존재하지 않습니다.">
+        <Table columns={COLUMNS} noDataMessage="표시할 데이터가 존재하지 않습니다.">
           {[]}
         </Table>
       </div>
@@ -129,7 +131,6 @@ export const NoData: Story = {
         <h3>커스텀 컴포넌트 메시지</h3>
         <Table
           columns={COLUMNS}
-          showNo
           noDataMessage={
             <div
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
@@ -155,11 +156,13 @@ const COLUMNS2 = [
 
 // 클릭 가능한 행
 export const ClickableRows: Story = {
-  render: () => (
-    <div style={{ padding: '24px', backgroundColor: theme.colors.gray0 }}>
-      <Table columns={COLUMNS2} showNo>
+  render: () => {
+    const [selectedId, setSelectedId] = useState<string>()
+
+    return (
+      <Table columns={COLUMNS2} startNo={11} selectedRowId={selectedId}>
         {DATA.map(row => (
-          <Table.Row key={row.id} onClick={() => alert(`${row.name} 행이 클릭되었습니다.`)}>
+          <Table.Row key={row.id} onClick={() => setSelectedId(row.id)}>
             {COLUMNS2.map(column => {
               const cellValue = row[column.key as 'workType' | 'name']
               return <Table.Cell key={column.key}>{cellValue}</Table.Cell>
@@ -167,6 +170,6 @@ export const ClickableRows: Story = {
           </Table.Row>
         ))}
       </Table>
-    </div>
-  ),
+    )
+  },
 }
