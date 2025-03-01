@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 
 import { theme } from '@allwagelab/design'
 import isPropValid from '@emotion/is-prop-valid'
@@ -41,7 +41,7 @@ interface BaseSelectCssProps {
 
 interface SelectOption {
   value: string
-  label: string
+  label: ReactNode
 }
 
 interface SelectProps extends BaseSelectCssProps {
@@ -107,12 +107,14 @@ const baseSelectCss = ({ full, size = 'md', isOpen }: BaseSelectCssProps) => css
 `
 
 const SelectButton = styled('button', {
-  shouldForwardProp: prop => isPropValid(prop),
+  shouldForwardProp: prop => isPropValid(prop) && prop !== 'isOpen',
 })<BaseSelectCssProps>`
   ${props => baseSelectCss(props)}
 `
 
-const DropdownList = styled.ul<{ isOpen: boolean }>`
+const DropdownList = styled('ul', {
+  shouldForwardProp: prop => isPropValid(prop) && prop !== 'isOpen',
+})<{ isOpen: boolean }>`
   box-sizing: border-box;
   position: absolute;
   top: 100%;
@@ -144,7 +146,9 @@ const DropdownItem = styled.li<{ isSelected: boolean; size?: SelectSize }>`
   }
 `
 
-const ChevronIcon = styled(ArrowDownIcon)<{ isOpen: boolean }>`
+const ChevronIcon = styled(ArrowDownIcon, {
+  shouldForwardProp: prop => isPropValid(prop) && prop !== 'isOpen',
+})<{ isOpen: boolean }>`
   transition: transform 0.2s ease;
   transform: rotate(${({ isOpen }) => (isOpen ? '180deg' : '0deg')});
 `

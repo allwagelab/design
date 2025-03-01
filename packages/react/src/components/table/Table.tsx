@@ -20,17 +20,19 @@ interface TableProps {
   selectedIds?: string[]
   onSelectedChange?: (selectedIds: string[]) => void
   title?: string
-  showNo?: boolean
+  startNo?: number
   noDataMessage?: ReactNode
   className?: string
   getRowId?: (row: any) => string
   minWidth?: number
+  selectedRowId?: string
 }
 
 interface RowProps {
   children: React.ReactNode
   onClick?: () => void
   className?: string
+  isSelected?: boolean
 }
 
 interface CellProps {
@@ -74,17 +76,18 @@ const TableBody = styled.tbody`
   ${theme.typography.body.b2_rg};
 `
 
-const TableRow = styled.tr`
+const TableRow = styled.tr<{ isSelected?: boolean }>`
   height: 54px;
   border-bottom: 1px solid ${theme.colors.gray20};
   ${animate};
+  background-color: ${props => (props.isSelected ? theme.colors.blue10 : 'transparent')};
 
   &:last-child {
     border-bottom: none;
   }
 
   &:hover {
-    background-color: ${theme.colors.gray10};
+    background-color: ${props => (props.isSelected ? theme.colors.blue20 : theme.colors.gray10)};
   }
 `
 
@@ -106,7 +109,7 @@ const TableCell = styled.td<{
   color?: string
 }>`
   padding: 0 8px;
-  text-align: ${props => props.align || 'left'};
+  text-align: ${props => props.align || 'center'};
   vertical-align: middle;
   color: ${props => props.color || theme.colors.gray90};
   ${theme.typography.body.b2_rg};
@@ -133,7 +136,7 @@ const TableHeaderCell = styled.th<{
   showNo?: boolean
 }>`
   padding: 0 8px;
-  text-align: ${props => props.align || 'left'};
+  text-align: ${props => props.align || 'center'};
   vertical-align: middle;
   color: ${props => props.color || theme.colors.baseBlack};
   ${theme.typography.body.b2_rg};
@@ -172,10 +175,13 @@ const Table: TableComponent = ({
   selectedIds = [],
   onSelectedChange,
   title,
-  showNo = false,
+  startNo,
   noDataMessage = '데이터가 없습니다.',
   className,
+  selectedRowId,
 }: TableProps) => {
+  const showNo = startNo !== undefined
+
   const validChildrenArray =
     Children.map(children, child => {
       if (!isValidElement(child)) return null
@@ -245,9 +251,11 @@ const Table: TableComponent = ({
           validChildrenArray.map(({ key, child }, index) => {
             const isChecked = selectedIds.includes(key)
             const rowChildren = child.props.children
+            const isSelected = selectedRowId === key
 
             return cloneElement(child as React.ReactElement<RowProps>, {
               ...child.props,
+              isSelected,
               children: (
                 <>
                   {hasCheckbox && (
@@ -257,7 +265,7 @@ const Table: TableComponent = ({
                   )}
                   {showNo && (
                     <Table.Cell align="center" width={60} color={theme.colors.gray70}>
-                      {index + 1}
+                      {(startNo || 0) + index}
                     </Table.Cell>
                   )}
                   {rowChildren}
@@ -271,9 +279,9 @@ const Table: TableComponent = ({
   )
 }
 
-Table.Row = function Row({ children, onClick, className }: RowProps) {
+Table.Row = function Row({ children, onClick, className, isSelected }: RowProps) {
   return (
-    <TableRow className={className} onClick={onClick}>
+    <TableRow className={className} onClick={onClick} isSelected={isSelected}>
       {children}
     </TableRow>
   )

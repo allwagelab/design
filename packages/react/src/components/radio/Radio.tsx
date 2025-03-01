@@ -106,7 +106,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
         <RadioInput
           ref={ref}
           type="radio"
-          checked={checked}
+          defaultChecked={checked}
           disabled={disabled}
           onChange={onChange}
           name={name}

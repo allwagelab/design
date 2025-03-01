@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react'
 
 import Select from './Select'
@@ -99,6 +101,101 @@ export const LongOptions: Story = {
       placeholder="긴 텍스트 옵션 예시"
     />
   ),
+}
+
+// 커스텀 라벨 예시
+export const CustomLabels: Story = {
+  render: () => {
+    const [value, setValue] = useState('open')
+
+    const customOptions = [
+      {
+        value: 'open',
+        label: (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: '#40C057',
+              }}
+            />
+            <span>진행중</span>
+          </div>
+        ),
+      },
+      {
+        value: 'pending',
+        label: (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: '#FCC419',
+              }}
+            />
+            <span>대기중</span>
+          </div>
+        ),
+      },
+      {
+        value: 'closed',
+        label: (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: '#FA5252',
+              }}
+            />
+            <span>종료</span>
+          </div>
+        ),
+      },
+      {
+        value: 'highlight',
+        label: (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontWeight: 'bold', color: '#228BE6' }}>중요</span>
+            <span
+              style={{
+                backgroundColor: '#E7F5FF',
+                padding: '2px 8px',
+                borderRadius: '4px',
+                fontSize: '12px',
+              }}
+            >
+              New
+            </span>
+          </div>
+        ),
+      },
+    ]
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '2rem',
+          width: '100%',
+          maxWidth: '300px',
+        }}
+      >
+        <Select
+          options={customOptions}
+          value={value}
+          onChange={setValue}
+          placeholder="상태를 선택해주세요"
+        />
+      </div>
+    )
+  },
 }
 
 // 실제 사용 예시

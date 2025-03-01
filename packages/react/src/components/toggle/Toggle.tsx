@@ -80,7 +80,7 @@ export default function Toggle({
     <ToggleWrapper disabled={disabled} className={className}>
       <ToggleInput
         type="checkbox"
-        checked={checked}
+        defaultChecked={checked}
         disabled={disabled}
         onChange={onChange}
         name={name}
