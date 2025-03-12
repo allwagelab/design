@@ -3,6 +3,8 @@ import { Global, css } from '@emotion/react'
 export const GlobalStyles = () => (
   <Global
     styles={css`
+      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
       *,
       ::before,
       ::after {
@@ -14,8 +16,17 @@ export const GlobalStyles = () => (
       html {
         line-height: normal;
         text-size-adjust: none;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-          'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Helvetica,
+          Arial,
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol';
         box-sizing: border-box;
         font-synthesis: none;
         text-rendering: optimizeLegibility;
